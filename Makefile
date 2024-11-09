@@ -1,3 +1,5 @@
+exec_in_container=docker compose exec js-node-web-backend-template
+
 .PHONY: build start
 all: build start
 build:
@@ -28,29 +30,31 @@ MIGRATION_NAME = $(m)-$(current_date)
 s := $(or $(s), create-seeder)
 SEEDER_NAME = $(s)-$(current_date)
 
+npm_install:
+	$(exec_in_container) npm install $(p)
 m_make:
-	$(exec_in_veliduckshii_container) npx sequelize-cli migration:generate --name $(MIGRATION_NAME)
+	$(exec_in_container) npx sequelize-cli migration:generate --name $(MIGRATION_NAME)
 
 m_migrate:
-	$(exec_in_veliduckshii_container) npx sequelize-cli db:migrate
+	npx sequelize-cli db:migrate
 
 m_undo:
-	$(exec_in_veliduckshii_container) npx sequelize-cli db:migrate:undo
+	npx sequelize-cli db:migrate:undo
 
 m_undo_all:
-	$(exec_in_veliduckshii_container) npx sequelize-cli db:migrate:undo:all
+	npx sequelize-cli db:migrate:undo:all
 
 s_create:
-	$(exec_in_veliduckshii_container) npx sequelize-cli seed:generate --name $(SEEDER_NAME)
+	npx sequelize-cli seed:generate --name $(SEEDER_NAME)
 
 s_all:
-	$(exec_in_veliduckshii_container) npx sequelize-cli db:seed:all 
+	npx sequelize-cli db:seed:all 
 
 s_seed:
-	$(exec_in_veliduckshii_container) npx sequelize-cli db:seed --seed $(name)
+	npx sequelize-cli db:seed --seed $(name)
 
 s_undo:
-	$(exec_in_veliduckshii_container) npx sequelize-cli db:seed:undo
+	npx sequelize-cli db:seed:undo
 
 d_check_db_connection:
 	@set -e; \

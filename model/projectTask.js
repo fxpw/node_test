@@ -1,32 +1,36 @@
+// model/projectTask
 const { DataTypes } = require('sequelize');
-
-
 
 const sequelize = require('../config/database'); //раскоментить для разработки
 // const path = require('path');
 // const appRoot = require('app-root-path');
 // const sequelize = require(path.join(appRoot.path, 'config/database.js'));  //раскоментить для прода
 
-const User = sequelize.define('User', {
+const User = sequelize.define('ProjectTask', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    username: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    subscriptionEnd: {
-        type: DataTypes.DATE,
-        allowNull: true // Это поле может быть null, если подписка не установлена
-    },
-    extraInfo: {
-        type: DataTypes.JSON,
-        allowNull: true
-    }
+    order: {
+		type: DataTypes.INTEGER,
+		allowNull: true
+	},
+	project_id: {
+		type: DataTypes.INTEGER,
+		allowNull: true
+	},
+	parent_task_id: {
+		type: DataTypes.INTEGER,
+		allowNull: true,
+		defaultValue: null,
+	},
 }, {
     timestamps: true // Включает поля createdAt и updatedAt автоматически
 });

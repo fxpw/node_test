@@ -7,6 +7,7 @@ const projectTaskRoutes = require('../routes/ProjectTaskRouter');
 const app = express();
 const BACKEND_PORT = process.env.BACKEND_PORT || 5000;
 
+
 app.use(cors());
 app.use(express.json());
 app.use('/api/projects', projectRoutes);

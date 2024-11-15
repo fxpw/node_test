@@ -36,25 +36,25 @@ m_make:
 	$(exec_in_container) npx sequelize-cli migration:generate --name $(MIGRATION_NAME)
 
 m_migrate:
-	npx sequelize-cli db:migrate
+	$(exec_in_container) npx sequelize-cli db:migrate
 
 m_undo:
-	npx sequelize-cli db:migrate:undo
+	$(exec_in_container) npx sequelize-cli db:migrate:undo
 
 m_undo_all:
-	npx sequelize-cli db:migrate:undo:all
+	$(exec_in_container) npx sequelize-cli db:migrate:undo:all
 
 s_create:
-	npx sequelize-cli seed:generate --name $(SEEDER_NAME)
+	$(exec_in_container) npx sequelize-cli seed:generate --name $(SEEDER_NAME)
 
 s_all:
-	npx sequelize-cli db:seed:all 
+	$(exec_in_container) npx sequelize-cli db:seed:all 
 
 s_seed:
-	npx sequelize-cli db:seed --seed $(name)
+	$(exec_in_container) npx sequelize-cli db:seed --seed $(name)
 
 s_undo:
-	npx sequelize-cli db:seed:undo
+	$(exec_in_container) npx sequelize-cli db:seed:undo
 
 d_check_db_connection:
 	@set -e; \

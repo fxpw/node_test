@@ -22,17 +22,21 @@ class ProjectService {
 		return project;
 	}
 
-	async updateProject(id, updatedData) {
-		const [updatedRowCount, [updatedProject]] = await Project.update(updatedData, {
-			where: { id },
-			returning: true,
-		});
-		return updatedRowCount ? updatedProject : null;
-	}
-
 	async deleteProject(id) {
 		const deletedCount = await Project.destroy({ where: { id } });
 		return deletedCount > 0;
+	}
+	async updateProject(id, updatedData) {
+		const project = await Project.findByPk(id);
+		if (!project) {
+			console.warn(`Проект с id ${id} не найден!`); // Логирование предупреждения
+			return false; // Возвращаем null, чтобы указать на отсутствие обновления
+		}
+		const data = await Project.update(updatedData, {
+			where: { id },
+			returning: true,
+		});
+		return (data[1]>0 ? true : false);
 	}
 
 }

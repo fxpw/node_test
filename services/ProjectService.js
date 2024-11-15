@@ -36,7 +36,7 @@ class ProjectService {
 			where: { id },
 			returning: true,
 		});
-		return (data[1]>0 ? true : false);
+		return (data[1] > 0 ? true : false);
 	}
 
 }

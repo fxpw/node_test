@@ -22,7 +22,6 @@ class ProjectService {
 
 	async deleteProject(id) {
 		const deletedCount = await ProjectRepository.destroy({ where: { id } });
-		await console.log(deletedCount);
 		return deletedCount > 0;
 	}
 	async updateProject(id, updatedData) {

@@ -1,5 +1,5 @@
 // services/ProjectTaskService.js
-const ProjectTask = require('../model/projectTask');
+const ProjectTask = require('../model/project_tasks');
 
 class ProjectTaskService {
 	async createTask(taskData) {

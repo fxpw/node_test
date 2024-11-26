@@ -23,16 +23,10 @@ module.exports = {
 				type: Sequelize.JSON,
 				allowNull: true
 			},
-			createdAt: {
-				allowNull: false,
-				type: Sequelize.DATE,
-				defaultValue: Sequelize.NOW
-			},
-			updatedAt: {
-				allowNull: false,
-				type: Sequelize.DATE,
-				defaultValue: Sequelize.NOW
-			}
+			
+		},{
+			paranoid: true,
+	timestamps: true
 		});
 	},
 

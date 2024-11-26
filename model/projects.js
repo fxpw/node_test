@@ -7,7 +7,7 @@ const sequelize = require('../config/database'); //раскоментить дл
 // const appRoot = require('app-root-path');
 // const sequelize = require(path.join(appRoot.path, 'config/database.js'));  //раскоментить для прода
 
-const Project = sequelize.define('Project', {
+const projects = sequelize.define('projects', {
 	id: {
 		type: DataTypes.INTEGER,
 		autoIncrement: true,
@@ -24,7 +24,8 @@ const Project = sequelize.define('Project', {
 		allowNull: true
 	},
 }, {
+	paranoid: true,
 	timestamps: true // Включает поля createdAt и updatedAt автоматически
 });
 
-module.exports = Project;
+module.exports = projects;

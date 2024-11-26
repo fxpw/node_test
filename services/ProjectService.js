@@ -1,37 +1,37 @@
 // services/ProjectService.js
 
-const Project = require('../model/project');
-// const path = require('path');
-// const appRoot = require('app-root-path');
-// const Project = require(path.join(appRoot.path, 'models/Project'));
+const ProjectRepository = require('../repositories/ProjectRepository.js');
+
+
 
 class ProjectService {
 	async createProject(projectData) {
-		const newProject = await Project.create(projectData);
+		const newProject = await ProjectRepository.create(projectData);
 		return newProject;
 	}
 
 	async getAllProjects() {
-		const projects = await Project.findAll();
+		const projects = await ProjectRepository.findAll();
 		return projects;
 	}
 
 	async getProjectById(id) {
-		const project = await Project.findByPk(id);
+		const project = await ProjectRepository.findByPk(id);
 		return project;
 	}
 
 	async deleteProject(id) {
-		const deletedCount = await Project.destroy({ where: { id } });
+		const deletedCount = await ProjectRepository.destroy({ where: { id } });
+		await console.log(deletedCount);
 		return deletedCount > 0;
 	}
 	async updateProject(id, updatedData) {
-		const project = await Project.findByPk(id);
+		const project = await ProjectRepository.findByPk(id);
 		if (!project) {
 			console.warn(`Проект с id ${id} не найден!`); // Логирование предупреждения
 			return false; // Возвращаем null, чтобы указать на отсутствие обновления
 		}
-		const data = await Project.update(updatedData, {
+		const data = await ProjectRepository.update(updatedData, {
 			where: { id },
 			returning: true,
 		});

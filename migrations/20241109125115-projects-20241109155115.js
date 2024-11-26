@@ -18,16 +18,10 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: true
 			},
-			createdAt: {
-				allowNull: false,
-				type: Sequelize.DATE,
-				defaultValue: Sequelize.NOW
-			},
-			updatedAt: {
-				allowNull: false,
-				type: Sequelize.DATE,
-				defaultValue: Sequelize.NOW
-			}
+
+		}, {
+			paranoid: true,
+			timestamps: true
 		});
 		await queryInterface.createTable('project_tasks', {
 			id: {
@@ -53,16 +47,10 @@ module.exports = {
 				allowNull: true,
 				defaultValue: null,
 			},
-			createdAt: {
-				allowNull: false,
-				type: Sequelize.DATE,
-				defaultValue: Sequelize.NOW
-			},
-			updatedAt: {
-				allowNull: false,
-				type: Sequelize.DATE,
-				defaultValue: Sequelize.NOW
-			}
+
+		}, {
+			paranoid: true,
+			timestamps: true
 		});
 	},
 

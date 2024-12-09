@@ -2,7 +2,6 @@ services:
 
   mysql_backend_template_db:
     container_name: mysql_backend_template_db
-    restart: always
     image: 'mysql/mysql-server:8.0'
     environment:
           MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'

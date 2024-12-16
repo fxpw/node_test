@@ -16,13 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: List tags
-        run: git tag
+        run: git describe --tags --abbrev=0
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEW_TAG: ${{ github.run_number }}
         run: |
-          LAST_TAG=$(git tag --sort=-creatordate | head -n 1)
+          LAST_TAG=$(git describe --tags --abbrev=0)
           if [ -z "$LAST_TAG" ]; then
             echo "No tags found. Exiting."
             exit 1

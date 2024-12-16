@@ -22,6 +22,6 @@ jobs:
           LAST_TAG=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           "https://api.github.com/repos/${{ github.repository }}/git/refs/tags" | \
           jq -r '.[-1].ref' | sed 's|refs/tags/||')
-          
-          gh release create $NEW_TAG --notes-from-tag --generate-notes
+          echo $LAST_TAG
+          gh release create $NEW_TAG --notes-from-tag $LAST_TAG
 

@@ -24,6 +24,5 @@ jobs:
           jq -r '.[-1].ref' | sed 's|refs/tags/||')
           
           gh release create "$NEW_TAG" \
-            --notes-from-tag "$LAST_TAG" \
-            --generate-notes
+            --notes-from-tag
 

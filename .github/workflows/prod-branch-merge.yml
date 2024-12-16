@@ -7,29 +7,33 @@ on:
       - main
 
 jobs:
-
-  test:
-    permissions: write-all
+  create_release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Determine last tag and create release notes
+        id: get_last_tag
+        run: |
+          LAST_TAG=$(git tag --sort=-creatordate | sed -n 2p)
+          echo "LAST_TAG=${LAST_TAG}" >> $GITHUB_ENV
+
       - name: Create Release
         id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.run_number }}
+          LAST_TAG: ${{ env.LAST_TAG }}
           RELEASE_NAME: Release ${{ github.run_number }}
         run: |
           gh release create "$TAG" \
             --repo="$GITHUB_REPOSITORY" \
             --title="${RELEASE_NAME}" \
-            --generate-notes
-        # with:
-        #   tag_name: ${{ github.run_number }}
-        #   release_name: Release ${{ github.run_number }}
-        #   draft: false
-        #   prerelease: false
+            --generate-notes \
+            --latest \
+            --notes-from-tag "$LAST_TAG"
 

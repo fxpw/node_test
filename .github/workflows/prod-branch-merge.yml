@@ -16,19 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Determine last tag
-        id: get_last_tag
-        run: |
-          echo "LATEST_TAG=$(git tag --sort=-creatordate | head -n 1)" >> $GITHUB_ENV
-
-
       - name: Create Release
-        id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEW_TAG: ${{ github.run_number }}
-          LATEST_TAG: ${{ env.LATEST_TAG }}
         run: |
+          LAST_TAG=$(git tag --sort=-creatordate | head -n 1)
+          if [ -z "$LAST_TAG" ]; then
+            echo "No tags found. Exiting."
+            exit 1
+          fi
+          
           gh release create "$NEW_TAG" \
-            --notes-from-tag "$LATEST_TAG"
+            --notes-from-tag "$LAST_TAG" \
+            --generate-notes
 

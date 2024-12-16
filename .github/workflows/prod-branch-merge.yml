@@ -1,0 +1,34 @@
+name: Run prod-branch-merge
+
+concurrency: prod
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Release
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.run_number }}
+          RELEASE_NAME: Release ${{ github.run_number }}
+        run: |
+          gh release create "$TAG" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="${RELEASE_NAME}" \
+            --generate-notes
+        # with:
+        #   tag_name: ${{ github.run_number }}
+        #   release_name: Release ${{ github.run_number }}
+        #   draft: false
+        #   prerelease: false
+

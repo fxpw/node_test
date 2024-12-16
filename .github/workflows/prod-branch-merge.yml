@@ -1,5 +1,4 @@
 name: Run prod-branch-merge
-
 concurrency: prod
 on:
   push:

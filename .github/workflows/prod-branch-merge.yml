@@ -8,15 +8,13 @@ on:
 
 jobs:
   create_release:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: List tags
-        run: git describe --tags --abbrev=0
+        run: git tag
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

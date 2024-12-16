@@ -23,5 +23,5 @@ jobs:
           "https://api.github.com/repos/${{ github.repository }}/git/refs/tags" | \
           jq -r '.[-1].ref' | sed 's|refs/tags/||')
           echo $LAST_TAG
-          gh release create "Release $NEW_TAG" --notes-start-tag "$LAST_TAG" --generate-notes
+          gh release create "$NEW_TAG" --notes-from-tag "$LAST_TAG"
 

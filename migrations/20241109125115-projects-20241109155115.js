@@ -18,10 +18,8 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: true
 			},
-
 		}, {
 			paranoid: true,
-			timestamps: true
 		});
 		await queryInterface.createTable('project_tasks', {
 			id: {
@@ -47,19 +45,13 @@ module.exports = {
 				allowNull: true,
 				defaultValue: null,
 			},
-
 		}, {
 			paranoid: true,
-			timestamps: true
 		});
 	},
 
 	async down(queryInterface, Sequelize) {
-		/**
-		 * Add reverting commands here.
-		 *
-		 * Example:
-		 * await queryInterface.dropTable('users');
-		 */
+		await queryInterface.dropTable('projects');
+		await queryInterface.dropTable('project_tasks');
 	}
 };

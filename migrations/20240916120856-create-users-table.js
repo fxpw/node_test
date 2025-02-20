@@ -26,7 +26,6 @@ module.exports = {
 			
 		},{
 			paranoid: true,
-	timestamps: true
 		});
 	},
 

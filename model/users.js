@@ -28,7 +28,6 @@ const Users = sequelize.define('users', {
         allowNull: true
     }
 }, {
-    timestamps: true // Включает поля createdAt и updatedAt автоматически
 });
 
 module.exports = Users;

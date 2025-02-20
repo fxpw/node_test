@@ -25,7 +25,6 @@ const projects = sequelize.define('projects', {
 	},
 }, {
 	paranoid: true,
-	timestamps: true // Включает поля createdAt и updatedAt автоматически
 });
 
 module.exports = projects;

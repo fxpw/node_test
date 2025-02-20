@@ -33,7 +33,6 @@ const project_tasks = sequelize.define('project_tasks', {
 	},
 }, {
 	paranoid: true,
-    timestamps: true // Включает поля createdAt и updatedAt автоматически
 });
 
 module.exports = project_tasks;

@@ -31,6 +31,21 @@ const project_tasks = sequelize.define('project_tasks', {
 		allowNull: true,
 		defaultValue: null,
 	},
+	createdAt: {
+		type: DataTypes.DATE,
+		allowNull: false,
+		defaultValue: DataTypes.NOW
+	},
+	updatedAt: {
+		type: DataTypes.DATE,
+		allowNull: false,
+		defaultValue: DataTypes.NOW
+	},
+	deletedAt: {
+		type: DataTypes.DATE,
+		allowNull: true,
+		defaultValue: null
+	},
 }, {
 	paranoid: true,
 });

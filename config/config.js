@@ -7,51 +7,45 @@ console.log(process.env.DB_CONTAINER_NAME);
 console.log(process.env.DB_CONNECTION);
 module.exports = {
 	development: {
-		"logging": false,
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASSWORD,
 		database: process.env.DB_DATABASE,
 		host: process.env.DB_CONTAINER_NAME,
 		port: process.env.DB_PORT,
 		dialect: process.env.DB_CONNECTION,
-		"define": {
-			"timestamps": false,
-			"createdAt": "created_at",
-			"updatedAt": "updated_at",
-			"createdBy": "created_by",
-			"updatedBy": "updated_by"
+		define: {
+			"createdAt": "createdAt",
+			"updatedAt": "updatedAt",
+			"createdBy": "createdBy",
+			"updatedBy": "updatedBy"
 		}
 	},
 	test: {
-		"logging": false,
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASSWORD,
 		database: process.env.DB_DATABASE,
 		host: process.env.DB_CONTAINER_NAME,
 		port: process.env.DB_PORT,
 		dialect: process.env.DB_CONNECTION,
-		"define": {
-			"timestamps": false,
-			"createdAt": "created_at",
-			"updatedAt": "updated_at",
-			"createdBy": "created_by",
-			"updatedBy": "updated_by"
+		define: {
+			"createdAt": "createdAt",
+			"updatedAt": "updatedAt",
+			"createdBy": "createdBy",
+			"updatedBy": "updatedBy"
 		}
 	},
 	production: {
-		"logging": false,
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASSWORD,
 		database: process.env.DB_DATABASE,
 		host: process.env.DB_CONTAINER_NAME,
 		port: process.env.DB_PORT,
 		dialect: process.env.DB_CONNECTION,
-		"define": {
-			"timestamps": false,
-			"createdAt": "created_at",
-			"updatedAt": "updated_at",
-			"createdBy": "created_by",
-			"updatedBy": "updated_by"
+		define: {
+			"createdAt": "createdAt",
+			"updatedAt": "updatedAt",
+			"createdBy": "createdBy",
+			"updatedBy": "updatedBy"
 		}
 	}
 };

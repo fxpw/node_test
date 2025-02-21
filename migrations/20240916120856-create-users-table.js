@@ -23,7 +23,21 @@ module.exports = {
 				type: Sequelize.JSON,
 				allowNull: true
 			},
-			
+			createdAt: {
+				type: Sequelize.DATE,
+				allowNull: false,
+				defaultValue: Sequelize.NOW
+			},
+			updatedAt: {
+				type: Sequelize.DATE,
+				allowNull: false,
+				defaultValue: Sequelize.NOW
+			},
+			deletedAt: {
+				type: Sequelize.DATE,
+				allowNull: true,
+				defaultValue: null
+			},
 		},{
 			paranoid: true,
 		});
